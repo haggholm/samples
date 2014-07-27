@@ -6,4 +6,4 @@ main = do
 
 isPrime :: Int -> Bool
 isPrime x = not $ any (\y -> x `mod` y == 0) lst
-            where lst = 2 : [3..ceiling $ toRational (sqrt $ fromIntegral x)] 
+            where lst = 2 : [3,5..ceiling $ toRational (sqrt $ fromIntegral x)] 
