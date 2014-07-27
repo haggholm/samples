@@ -5,19 +5,20 @@
 -- 25 words.
 
 import qualified Data.Map as Map  
+import Data.Char
 import Data.List
 import System.IO     
     
 main = do     
     contents <- readFile "../data/kingjames.txt"
-    oFreqList $ Map.toList (calcFreqs . words $ contents)
+    oFreqList $ Map.toList (calcFreqs (words contents))
     return 1
 
 calcFreqs :: [String] -> Map.Map String Int
 calcFreqs words = foldl' (\acc word -> incFreq word acc) Map.empty words
 
 incFreq :: String -> Map.Map String Int -> Map.Map String Int
-incFreq word map = Map.insertWith (+) word 1 map
+incFreq word freqMap = Map.insertWith (+) (map toLower word) 1 freqMap
 
 oFreqList :: [(String, Int)] -> IO ()
 oFreqList lst = do
